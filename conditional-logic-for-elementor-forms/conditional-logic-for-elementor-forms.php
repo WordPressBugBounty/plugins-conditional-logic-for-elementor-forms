@@ -12,6 +12,7 @@
  * Domain Path: /languages
  * Author URI: https://add-ons.org/
 */
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 define( 'ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
