@@ -116,7 +116,6 @@ class Superaddons_Elementor_Conditional_Logic {
                     foreach($values as $vl){
                         if( str_contains($value_id,$vl) ){
                             $rs = false;
-                           
                         }
                     }    
                     break;   
@@ -175,7 +174,6 @@ class Superaddons_Elementor_Conditional_Logic {
                         if( $display == "show" ) {
                             if( $check_rs == true ){
                             }else{
-                                
                                 $this->remove_field_in_repeater($field,$record);
                             }
                         }else{
@@ -209,12 +207,17 @@ class Superaddons_Elementor_Conditional_Logic {
          }else {
          }
          $this->check_validate = true;  
-         foreach ( $form_settings["form_fields"] as $id => $field ) {
-            $array_remove = array("rednumber_dev_check","1023-01-01","1234567892","rednumber_dev_check@test.com");
-            if( in_array($field["value"],$array_remove)){
-                $record->remove_field($id); 
-            }
+         if(isset($form_settings["form_fields"]) && is_array($form_settings["form_fields"])){
+            foreach ( $form_settings["form_fields"] as $id => $field ) {
+                $array_remove = array("rednumber_dev_check","1023-01-01","1234567892","rednumber_dev_check@test.com");
+                if(isset($field["value"])){
+                    if( in_array($field["value"],$array_remove)){
+                        $record->remove_field($id); 
+                    }
+                }
+             }
          }
+         
     }
     function remove_field_in_repeater($field,$record){
         if($field["field_type"] == "repeater"){
@@ -262,7 +265,7 @@ class Superaddons_Elementor_Conditional_Logic {
             $options_logic = array(
                             "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
                             "!=" => esc_html__("not is","conditional-logic-for-elementor-forms"),
-							"==" => esc_html__("is","conditional-logic-for-elementor-forms"),
+                            "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
                             "!=" => esc_html__("not is","conditional-logic-for-elementor-forms"),
                             "e" => esc_html__("empty","conditional-logic-for-elementor-forms"),
                             "!e" => esc_html__("not empty","conditional-logic-for-elementor-forms"),
@@ -280,7 +283,6 @@ class Superaddons_Elementor_Conditional_Logic {
                             "12" => esc_html__("Not List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
                         );  
         }
-
         $field_controls = [
                 'conditional_logic' => [
                     'name' => 'conditional_logic',
@@ -386,7 +388,6 @@ class Superaddons_Elementor_Conditional_Logic {
                     'inner_tab' => 'form_fields_advanced_tab',
                     'tabs_wrapper' => 'form_fields_tabs',
                 ],
-
             ];
             $control_data['fields'] = $this->inject_field_controls( $control_data['fields'], $field_controls );
             $widget->update_control( 'form_fields', $control_data );
