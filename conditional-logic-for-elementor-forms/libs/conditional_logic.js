@@ -3,23 +3,23 @@
     $( document ).ready( function () { 
 		jQuery( document ).on( 'elementor/popup/show', () => {
 			$( ".elementor-form" ).each(function( index ) {
-				var form = $(this).closest(".elementor-widget-container");
+				var form = $(this).closest(".elementor-element");
 				elementor_conditional_logic_load(form);
 			});
 		} );
 		window.addEventListener( 'elementor/frontend/init', () => {
 			$( ".elementor-form" ).each(function( index ) {
-				var form = $(this).closest(".elementor-widget-container");
+				var form = $(this).closest(".elementor-element");
 				elementor_conditional_logic_load(form);
 			});
 		} );
 		$("body").on("change",".elementor-form input,.elementor-form select,.elementor-form textarea",function(e){
-			var form = $(this).closest(".elementor-widget-container");
+			var form = $(this).closest(".elementor-element");
 			elementor_conditional_logic_load(form);
 		})
 		$("input").on("done_load_repeater",function(e,item){
 			$( ".elementor-form" ).each(function( index ) {
-				var form = $(this).closest(".elementor-widget-container");
+				var form = $(this).closest(".elementor-element");
 				elementor_conditional_logic_load(form);
 			});
 		})

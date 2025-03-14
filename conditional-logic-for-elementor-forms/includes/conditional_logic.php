@@ -17,7 +17,7 @@ class Superaddons_Elementor_Conditional_Logic {
         add_filter("elementor_pro/forms/record/actions_before",array($this,"custom_actions"),10,2);
     }
     function add_libs() {
-        wp_register_script( 'elementor_pro_conditional_logic', ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL.'libs/conditional_logic.js', ["jquery" ]);
+        wp_register_script( 'elementor_pro_conditional_logic', ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL.'libs/conditional_logic.js', ["jquery" ],time());
         wp_enqueue_style( 'elementor_pro_conditional_logic', ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL.'libs/conditional_logic.css');
         wp_enqueue_script('elementor_pro_conditional_logic');
     }
@@ -400,7 +400,7 @@ class Superaddons_Elementor_Conditional_Logic {
             }
         endforeach;
         ?>
-        <input class="conditional_logic_data_js hidden" data-form-id="<?php echo esc_attr( $instance["form_name"] ) ?>" value="<?php echo htmlspecialchars(json_encode($datas)) ?>" />
+        <input type="hidden" class="conditional_logic_data_js hidden" data-form-id="<?php echo esc_attr( $instance["form_name"] ) ?>" value="<?php echo htmlspecialchars(json_encode($datas)) ?>" />
         <?php
     }
     function inject_field_controls( $array, $controls_to_inject ) {
