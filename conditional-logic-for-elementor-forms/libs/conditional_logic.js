@@ -189,6 +189,12 @@
 				field.find("input").val("");
 			}
 		}
+		else if( field.hasClass("elementor-field-type-telephone") ){
+			var value = field.find("input").val();
+			if(value == "+84372344123"){
+				field.find("input").val("");
+			}
+		}
 		else if( field.hasClass("elementor-field-type-url") ){
 			var value = field.find("input").val();
 			if(value == "https://rednumber_dev_check.com"){
@@ -225,8 +231,8 @@
 				field.find("input").val("");
 			}
 		}
-		}
-		function elementor_conditional_logic_fixed_required_hidden(field){
+	}
+	function elementor_conditional_logic_fixed_required_hidden(field){
 		if(field.find(".elementor-field-repeater-data").length > 0 ){
 			var fields_repeater = field.find(".elementor-field-required");
 			fields_repeater.each(function( index ) {
@@ -277,6 +283,13 @@
 			field.find("input").removeAttr("aria-required");
 			if(value == ""){
 				field.find("input").val("1234567892");
+			}
+		}
+		else if( field.hasClass("elementor-field-type-telephone") ){
+			var value = field.find("input").val();
+			field.find("input").removeAttr("aria-required");
+			if(value == ""){
+				field.find("input").val("+84372344123");
 			}
 		}
 		else if( field.hasClass("elementor-field-type-url") ){
