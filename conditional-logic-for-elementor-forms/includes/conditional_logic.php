@@ -25,12 +25,11 @@ class Superaddons_Elementor_Conditional_Logic {
         wp_register_script( 'elementor_pro_conditional_logic_editor', ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL.'libs/conditional_logic_editor.js', ["jquery" ]);
         wp_enqueue_style( 'elementor_pro_conditional_logic_editor', ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL.'libs/conditional_logic_editor.css');
         wp_enqueue_script('elementor_pro_conditional_logic_editor');
-        $check = get_option( '_redmuber_item_1473');
         wp_localize_script(
             'elementor_pro_conditional_logic_editor',
             'elementor_pro_conditional_logic_editor',
             array(
-                'pro' => $check,
+                'pro' => "ok",
             )
 );
     }
@@ -217,7 +216,6 @@ class Superaddons_Elementor_Conditional_Logic {
                 }
              }
          }
-         
     }
     function remove_field_in_repeater($field,$record){
         if($field["field_type"] == "repeater"){
@@ -242,27 +240,7 @@ class Superaddons_Elementor_Conditional_Logic {
         if ( is_wp_error( $control_data ) ) {
             return;
         }
-        $check = get_option( '_redmuber_item_1473');
-        if($check == "ok"){
-            $options_logic = array(
-                            "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
-                            "!=" => esc_html__("not is","conditional-logic-for-elementor-forms"),
-                            "e" => esc_html__("empty","conditional-logic-for-elementor-forms"),
-                            "!e" => esc_html__("not empty","conditional-logic-for-elementor-forms"),
-                            "c" => esc_html__("contains","conditional-logic-for-elementor-forms"),
-                            "!c" => esc_html__("does not contain","conditional-logic-for-elementor-forms"),
-                            "^" => esc_html__("starts with","conditional-logic-for-elementor-forms"),
-                            "~" => esc_html__("ends with","conditional-logic-for-elementor-forms"),
-                            ">" => esc_html__("greater than","conditional-logic-for-elementor-forms"),
-                            "<" => esc_html__("less than","conditional-logic-for-elementor-forms"),
-                            "array" => esc_html__("list array (a,b,c)","conditional-logic-for-elementor-forms"),
-                            "!array" => esc_html__("not list array (a,b,c)","conditional-logic-for-elementor-forms"),
-                            "array_contain" => esc_html__("list array contain (a,b,c)","conditional-logic-for-elementor-forms"),
-                            "!array_contain" => esc_html__("not list array contain (a,b,c)","conditional-logic-for-elementor-forms"),
-                        );
-            $options_pro = array();
-        }else{
-            $options_logic = array(
+        $options_logic = array(
                             "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
                             "!=" => esc_html__("not is","conditional-logic-for-elementor-forms"),
                             "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
@@ -276,13 +254,12 @@ class Superaddons_Elementor_Conditional_Logic {
                             ">" => esc_html__("greater than","conditional-logic-for-elementor-forms"),
                             "<" => esc_html__("less than","conditional-logic-for-elementor-forms"),
                         );
-            $options_pro = array(
-                            "9" => esc_html__("List array (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
-                            "10" => esc_html__("Not List array (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
-                            "11" => esc_html__("List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
-                            "12" => esc_html__("Not List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
-                        );  
-        }
+        $options_pro = array(
+                        "9" => esc_html__("List array (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
+                        "10" => esc_html__("Not List array (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
+                        "11" => esc_html__("List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
+                        "12" => esc_html__("Not List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
+                    );  
         $field_controls = [
                 'conditional_logic' => [
                     'name' => 'conditional_logic',
@@ -389,6 +366,7 @@ class Superaddons_Elementor_Conditional_Logic {
                     'tabs_wrapper' => 'form_fields_tabs',
                 ],
             ];
+            $field_controls = apply_filters("yeeaddons_pro_settings_1473",$field_controls);
             $control_data['fields'] = $this->inject_field_controls( $control_data['fields'], $field_controls );
             $widget->update_control( 'form_fields', $control_data );
     }

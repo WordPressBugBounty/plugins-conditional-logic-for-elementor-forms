@@ -1,10 +1,8 @@
 <?php
 use ElementorPro\Plugin;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
 /**
  * Elementor select control.
  *
@@ -15,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 class Superaddons_Control_Select extends \Elementor\Base_Data_Control {
-
 	/**
 	 * Get select control type.
 	 *
@@ -29,7 +26,6 @@ class Superaddons_Control_Select extends \Elementor\Base_Data_Control {
 	public function get_type() {
 		return 'select1';
 	}
-
 	/**
 	 * Get select control default settings.
 	 *
@@ -47,7 +43,6 @@ class Superaddons_Control_Select extends \Elementor\Base_Data_Control {
 			'options_pro' => [],
 		];
 	}
-
 	/**
 	 * Render select control output in the editor.
 	 *
@@ -59,7 +54,7 @@ class Superaddons_Control_Select extends \Elementor\Base_Data_Control {
 	 * @access public
 	 */
 	public function content_template() {
-		$check = get_option( '_redmuber_item_1473');
+		$check = 99;
 		?>
 		<div class="elementor-control-field {{ data.content_classes }}">
 			<# if ( data.label ) {#>
@@ -78,7 +73,6 @@ class Superaddons_Control_Select extends \Elementor\Base_Data_Control {
 							<option disabled>{{{ option_title?.title || option_title }}}</option>
 						<# } );
 					};
-
 					if ( data.groups ) {
 						for ( var groupIndex in data.groups ) {
 							var groupArgs = data.groups[ groupIndex ];
