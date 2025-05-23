@@ -25,13 +25,6 @@ class Superaddons_Elementor_Conditional_Logic {
         wp_register_script( 'elementor_pro_conditional_logic_editor', ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL.'libs/conditional_logic_editor.js', ["jquery" ]);
         wp_enqueue_style( 'elementor_pro_conditional_logic_editor', ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL.'libs/conditional_logic_editor.css');
         wp_enqueue_script('elementor_pro_conditional_logic_editor');
-        wp_localize_script(
-            'elementor_pro_conditional_logic_editor',
-            'elementor_pro_conditional_logic_editor',
-            array(
-                'pro' => "ok",
-            )
-);
     }
     function custom_actions($record, $form){
         return $record;
@@ -241,25 +234,25 @@ class Superaddons_Elementor_Conditional_Logic {
             return;
         }
         $options_logic = array(
-                            "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
-                            "!=" => esc_html__("not is","conditional-logic-for-elementor-forms"),
-                            "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
-                            "!=" => esc_html__("not is","conditional-logic-for-elementor-forms"),
+                            "==" => esc_html__("is =","conditional-logic-for-elementor-forms"),
+                            "!=" => esc_html__("not is #","conditional-logic-for-elementor-forms"),
                             "e" => esc_html__("empty","conditional-logic-for-elementor-forms"),
                             "!e" => esc_html__("not empty","conditional-logic-for-elementor-forms"),
                             "c" => esc_html__("contains","conditional-logic-for-elementor-forms"),
                             "!c" => esc_html__("does not contain","conditional-logic-for-elementor-forms"),
                             "^" => esc_html__("starts with","conditional-logic-for-elementor-forms"),
                             "~" => esc_html__("ends with","conditional-logic-for-elementor-forms"),
-                            ">" => esc_html__("greater than","conditional-logic-for-elementor-forms"),
-                            "<" => esc_html__("less than","conditional-logic-for-elementor-forms"),
+                            ">" => esc_html__("greater than >","conditional-logic-for-elementor-forms"),
+                            "<" => esc_html__("less than <","conditional-logic-for-elementor-forms"),
                         );
-        $options_pro = array(
-                        "9" => esc_html__("List array (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
-                        "10" => esc_html__("Not List array (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
-                        "11" => esc_html__("List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
-                        "12" => esc_html__("Not List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
-                    );  
+            $options_pro = array(
+                            "9" => esc_html__("List array (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
+                            "10" => esc_html__("Not List array (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
+                            "11" => esc_html__("List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
+                            "12" => esc_html__("Not List array contain (a,b,c) - Pro","conditional-logic-for-elementor-forms"),
+                        ); 
+        $options_logic = apply_filters("yeeaddons_condition_options_logic",$options_logic);           
+        $options_pro = apply_filters("yeeaddons_condition_options_logic_pro",$options_pro);     
         $field_controls = [
                 'conditional_logic' => [
                     'name' => 'conditional_logic',
@@ -366,7 +359,6 @@ class Superaddons_Elementor_Conditional_Logic {
                     'tabs_wrapper' => 'form_fields_tabs',
                 ],
             ];
-            $field_controls = apply_filters("yeeaddons_pro_settings_1473",$field_controls);
             $control_data['fields'] = $this->inject_field_controls( $control_data['fields'], $field_controls );
             $widget->update_control( 'form_fields', $control_data );
     }

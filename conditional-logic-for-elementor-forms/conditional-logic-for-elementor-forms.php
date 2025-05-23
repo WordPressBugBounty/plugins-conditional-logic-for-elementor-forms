@@ -1,23 +1,21 @@
 <?php
 /**
- * Plugin Name: Yeekit - Conditional Logic for Elementor Forms
+ * Plugin Name: Conditional Logic for Elementor Forms
+ * Plugin URI: https://add-ons.org/plugin/elementor-forms-conditional-logic/
  * Requires Plugins: elementor
  * Description: The Conditional Logic add-on can be used to show and hide form fields based off of the user’s inputs.
- * Version: 2.3.0
+ * Version: 2.3.1
  * Author: add-ons.org
- * Elementor tested up to: 3.28
- * Elementor Pro tested up to: 3.28
- * Domain Path: /languages
+ * Elementor tested up to: 3.29
+ * Elementor Pro tested up to: 3.29
  * Author URI: https://add-ons.org/
- * License: GPLv2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 define( 'ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 include ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH."includes/conditional_logic.php";
-class Yeeaddons_Elementor_Conditional_logic_Init{
+class Superaddons_Elementor_Conditional_logic_Init{
 	function __construct(){
 		add_action( 'elementor_pro/forms/fields/register', array($this,"superaddons_add_new_html1_field") );
 		add_filter( 'elementor_pro/forms/field_types', array($this,"superaddons_remove_html_field_type") );
@@ -96,4 +94,5 @@ class Yeeaddons_Elementor_Conditional_logic_Init{
 	    $form_fields_registrar->register( new \Superaddons_Elemntor_HTML1_Field() );
 	}
 }
-new Yeeaddons_Elementor_Conditional_logic_Init;
+new Superaddons_Elementor_Conditional_logic_Init;
+include_once ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH."yeekit/document.php";

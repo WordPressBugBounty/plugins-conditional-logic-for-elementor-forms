@@ -1,19 +1,25 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 use ElementorPro\Plugin;
 class Conditional_Repeater_Control extends \Elementor\Control_Repeater {
+
 	public function get_type() {
 		return 'conditional_logic_repeater';
 	}
+
 	public function enqueue() {
 		wp_enqueue_script(
 			'conditional_logic_repeater',
 			ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_URL .'libs/repeater_control.js',
 		);
+
+	
 	}
 	public function get_default_value() {
 		return [];
 	}
+
 	/**
 	 * Get repeater control default settings.
 	 *
@@ -39,6 +45,7 @@ class Conditional_Repeater_Control extends \Elementor\Control_Repeater {
 			],
 		];
 	}
+
 	/**
 	 * Get repeater control value.
 	 *
@@ -54,20 +61,25 @@ class Conditional_Repeater_Control extends \Elementor\Control_Repeater {
 	 */
 	public function get_value( $control, $settings ) {
 		$value = parent::get_value( $control, $settings );
+
 		if ( ! empty( $value ) ) {
 			foreach ( $value as &$item ) {
 				foreach ( $control['fields'] as $field ) {
 					$control_obj = \Elementor\Plugin::$instance->controls_manager->get_control( $field['type'] );
+
 					// Prior to 1.5.0 the fields may contains non-data controls.
 					if ( ! $control_obj instanceof Base_Data_Control ) {
 						continue;
 					}
+
 					$item[ $field['name'] ] = $control_obj->get_value( $field, $item );
 				}
 			}
 		}
+
 		return $value;
 	}
+
 	/**
 	 * Import repeater.
 	 *
@@ -86,23 +98,30 @@ class Conditional_Repeater_Control extends \Elementor\Control_Repeater {
 		if ( empty( $settings ) || empty( $control_data['fields'] ) ) {
 			return $settings;
 		}
+
 		$method = 'on_import';
+
 		foreach ( $settings as &$item ) {
 			foreach ( $control_data['fields'] as $field ) {
 				if ( empty( $field['name'] ) || empty( $item[ $field['name'] ] ) ) {
 					continue;
 				}
+
 				$control_obj = \Elementor\Plugin::$instance->controls_manager->get_control( $field['type'] );
+
 				if ( ! $control_obj ) {
 					continue;
 				}
+
 				if ( method_exists( $control_obj, $method ) ) {
 					$item[ $field['name'] ] = $control_obj->{$method}( $item[ $field['name'] ], $field );
 				}
 			}
 		}
+
 		return $settings;
 	}
+
 	public function content_template() {
 		?>
 		<label>
@@ -114,7 +133,7 @@ class Conditional_Repeater_Control extends \Elementor\Control_Repeater {
 				<button class="elementor-button elementor-repeater-add" type="button">
 					<i class="eicon-plus" aria-hidden="true"></i>
 					<# if ( data.button_text ) { #>
-						<?php echo esc_html__( '{{{ data.button_text }}}', 'conditional-logic-for-elementor-forms' ); ?>
+						<?php echo esc_html__( '{{{ data.button_text }}}', 'elementor' ); ?>
 					<# } else { #>
 						<?php echo esc_html__( 'Add', "conditional-logic-for-elementor-forms" ); ?>
 					<# } #>
@@ -123,4 +142,5 @@ class Conditional_Repeater_Control extends \Elementor\Control_Repeater {
 		<# } #>
 		<?php
 	}
+
 }

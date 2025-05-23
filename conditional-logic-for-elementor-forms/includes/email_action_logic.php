@@ -10,7 +10,7 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 		return 'email_conditional_logic';
 	}
 	public function get_label() {
-		return esc_html__( 'Email Conditional Logic', 'conditional-logic-for-elementor-forms'  );
+		return esc_html__( 'Email Conditional Logic', 'elementor-pro' );
 	}
 	protected function get_control_id( $control_id ) {
 		return $control_id . '_conditional_logic';
@@ -20,22 +20,25 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 	}
 	public function register_settings_section( $widget ) {
         $options_logic = array(
-                        "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
-                        "!=" => esc_html__("not is","conditional-logic-for-elementor-forms"),
-                        "e" => esc_html__("empty","conditional-logic-for-elementor-forms"),
-                        "!e" => esc_html__("not empty","conditional-logic-for-elementor-forms"),
-                        "c" => esc_html__("contains","conditional-logic-for-elementor-forms"),
-                        "!c" => esc_html__("does not contain","conditional-logic-for-elementor-forms"),
-                        "^" => esc_html__("starts with","conditional-logic-for-elementor-forms"),
-                        "~" => esc_html__("ends with","conditional-logic-for-elementor-forms"),
-                        ">" => esc_html__("greater than","conditional-logic-for-elementor-forms"),
-                        "<" => esc_html__("less than","conditional-logic-for-elementor-forms"),
-                        "array" => esc_html__("list array (a,b,c)","conditional-logic-for-elementor-forms"),
-                        "!array" => esc_html__("not list array (a,b,c)","conditional-logic-for-elementor-forms"),
-                        "array_contain" => esc_html__("list array contain (a,b,c)","conditional-logic-for-elementor-forms"),
-                        "!array_contain" => esc_html__("not list array contain (a,b,c)","conditional-logic-for-elementor-forms"),
-                    );
-        $options_pro = array();
+                            "==" => esc_html__("is","conditional-logic-for-elementor-forms"),
+                            "!=" => esc_html__("not is","conditional-logic-for-elementor-forms"),
+                        );
+        $options_pro = array(
+                        "1" => esc_html__("Empty (Pro version)","conditional-logic-for-elementor-forms"),
+                        "1" => esc_html__("Not empty (Pro version)","conditional-logic-for-elementor-forms"),
+                        "3" => esc_html__("Contains (Pro version)","conditional-logic-for-elementor-forms"),
+                        "4" => esc_html__("Does not contain (Pro version)","conditional-logic-for-elementor-forms"),
+                        "5" => esc_html__("Starts with (Pro version)","conditional-logic-for-elementor-forms"),
+                        "6" => esc_html__("Ends with (Pro version)","conditional-logic-for-elementor-forms"),
+                        "7" => esc_html__("Greater than > (Pro version)","conditional-logic-for-elementor-forms"),
+                        "8" => esc_html__("Less than < (Pro version)","conditional-logic-for-elementor-forms"),
+                        "9" => esc_html__("List array (a,b,c)","conditional-logic-for-elementor-forms"),
+                        "10" => esc_html__("Not List array (a,b,c)","conditional-logic-for-elementor-forms"),
+                        "11" => esc_html__("List array contain (a,b,c)","conditional-logic-for-elementor-forms"),
+                        "12" => esc_html__("Not List array contain (a,b,c)","conditional-logic-for-elementor-forms"),
+                    ); 
+	     $options_logic = apply_filters("yeeaddons_condition_options_logic",$options_logic);           
+	     $options_pro = apply_filters("yeeaddons_condition_options_logic_pro",$options_pro);           
 		$widget->start_controls_section(
 			$this->get_control_id( 'section_email' ),
 			[
@@ -49,21 +52,21 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 		$widget->add_control(
 			$this->get_control_id( 'email_to' ),
 			[
-				'label' => esc_html__( 'To', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'To', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => get_option( 'admin_email' ),
 				'placeholder' => get_option( 'admin_email' ),
 				'label_block' => true,
-				'title' => esc_html__( 'Separate emails with commas', 'conditional-logic-for-elementor-forms'  ),
+				'title' => esc_html__( 'Separate emails with commas', 'elementor-pro' ),
 				'render_type' => 'none',
 			]
 		);
 		/* translators: %s: Site title. */
-		$default_message = sprintf( esc_html__( 'New message from "%s"', 'conditional-logic-for-elementor-forms'  ), get_option( 'blogname' ) );
+		$default_message = sprintf( esc_html__( 'New message from "%s"', 'elementor-pro' ), get_option( 'blogname' ) );
 		$widget->add_control(
 			$this->get_control_id( 'email_subject' ),
 			[
-				'label' => esc_html__( 'Subject', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'Subject', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => $default_message,
 				'placeholder' => $default_message,
@@ -74,11 +77,11 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 		$widget->add_control(
 			$this->get_control_id( 'email_content' ),
 			[
-				'label' => esc_html__( 'Message', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'Message', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'default' => '[all-fields]',
 				'placeholder' => '[all-fields]',
-				'description' => sprintf( esc_html__( 'By default, all form fields are sent via %s shortcode. To customize sent fields, copy the shortcode that appears inside each field and paste it above.', 'conditional-logic-for-elementor-forms'  ), '<code>[all-fields]</code>' ),
+				'description' => sprintf( esc_html__( 'By default, all form fields are sent via %s shortcode. To customize sent fields, copy the shortcode that appears inside each field and paste it above.', 'elementor-pro' ), '<code>[all-fields]</code>' ),
 				'render_type' => 'none',
 			]
 		);
@@ -86,7 +89,7 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 		$widget->add_control(
 			$this->get_control_id( 'email_from' ),
 			[
-				'label' => esc_html__( 'From Email', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'From Email', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => 'email@' . $site_domain,
 				'render_type' => 'none',
@@ -95,7 +98,7 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 		$widget->add_control(
 			$this->get_control_id( 'email_from_name' ),
 			[
-				'label' => esc_html__( 'From Name', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'From Name', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => get_bloginfo( 'name' ),
 				'render_type' => 'none',
@@ -105,38 +108,38 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 		$widget->add_control(
 			$this->get_control_id( 'email_reply_to' ),
 			[
-				'label' => esc_html__( 'Reply-To', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'Reply-To', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => $admin_email,
 				'placeholder' => $admin_email,
 				'render_type' => 'none',
-				'description' => esc_html__( 'You can ID email filed', 'conditional-logic-for-elementor-forms'  ),
+				'description' => esc_html__( 'You can ID email filed', 'elementor-pro' ),
 			]
 		);
 		$widget->add_control(
 			$this->get_control_id( 'email_to_cc' ),
 			[
-				'label' => esc_html__( 'Cc', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'Cc', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '',
-				'title' => esc_html__( 'Separate emails with commas', 'conditional-logic-for-elementor-forms'  ),
+				'title' => esc_html__( 'Separate emails with commas', 'elementor-pro' ),
 				'render_type' => 'none',
 			]
 		);
 		$widget->add_control(
 			$this->get_control_id( 'email_to_bcc' ),
 			[
-				'label' => esc_html__( 'Bcc', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'Bcc', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '',
-				'title' => esc_html__( 'Separate emails with commas', 'conditional-logic-for-elementor-forms'  ),
+				'title' => esc_html__( 'Separate emails with commas', 'elementor-pro' ),
 				'render_type' => 'none',
 			]
 		);
 		$widget->add_control(
 			$this->get_control_id( 'form_metadata' ),
 			[
-				'label' => esc_html__( 'Meta Data', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'Meta Data', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT2,
 				'multiple' => true,
 				'label_block' => true,
@@ -150,12 +153,12 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 					'credit',
 				],
 				'options' => [
-					'date' => esc_html__( 'Date', 'conditional-logic-for-elementor-forms'  ),
-					'time' => esc_html__( 'Time', 'conditional-logic-for-elementor-forms'  ),
-					'page_url' => esc_html__( 'Page URL', 'conditional-logic-for-elementor-forms'  ),
-					'user_agent' => esc_html__( 'User Agent', 'conditional-logic-for-elementor-forms'  ),
-					'remote_ip' => esc_html__( 'Remote IP', 'conditional-logic-for-elementor-forms'  ),
-					'credit' => esc_html__( 'Credit', 'conditional-logic-for-elementor-forms'  ),
+					'date' => esc_html__( 'Date', 'elementor-pro' ),
+					'time' => esc_html__( 'Time', 'elementor-pro' ),
+					'page_url' => esc_html__( 'Page URL', 'elementor-pro' ),
+					'user_agent' => esc_html__( 'User Agent', 'elementor-pro' ),
+					'remote_ip' => esc_html__( 'Remote IP', 'elementor-pro' ),
+					'credit' => esc_html__( 'Credit', 'elementor-pro' ),
 				],
 				'render_type' => 'none',
 			]
@@ -163,13 +166,13 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 		$widget->add_control(
 			$this->get_control_id( 'email_content_type' ),
 			[
-				'label' => esc_html__( 'Send As', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'Send As', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'html',
 				'render_type' => 'none',
 				'options' => [
-					'html' => esc_html__( 'HTML', 'conditional-logic-for-elementor-forms'  ),
-					'plain' => esc_html__( 'Plain', 'conditional-logic-for-elementor-forms'  ),
+					'html' => esc_html__( 'HTML', 'elementor-pro' ),
+					'plain' => esc_html__( 'Plain', 'elementor-pro' ),
 				],
 			]
 		);
@@ -177,7 +180,7 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 		$widget->add_control(
 			$control_id_conditional_logic,
 			[
-				'label' => esc_html__( 'Enable Conditional Logic', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'Enable Conditional Logic', 'elementor-pro' ),
 				'render_type' => 'none',
 				'type' => Controls_Manager::SWITCHER,
 			]
@@ -324,7 +327,7 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 			$fields = [
 				'email_to' => get_option( 'admin_email' ),
 				/* translators: %s: Site title. */
-				'email_subject' => sprintf( esc_html__( 'New message from "%s"', 'conditional-logic-for-elementor-forms'  ), get_bloginfo( 'name' ) ),
+				'email_subject' => sprintf( esc_html__( 'New message from "%s"', 'elementor-pro' ), get_bloginfo( 'name' ) ),
 				'email_content' => '[all-fields]',
 				'email_from_name' => get_bloginfo( 'name' ),
 				'email_from' => get_bloginfo( 'admin_email' ),
@@ -514,7 +517,7 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
                         }
                     }    
                     break;   
-            	default: 
+              default: 
                 break; 
             }
             return $rs;
@@ -522,322 +525,183 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
 }
 class Superaddons_Email_Conditional_Logic_2 extends Superaddons_Email_Conditional_Logic {
 	public function get_name() {
-		return 'email_conditional_logic_2';
+		$id = $this->id_class();
+		return 'email_conditional_logic_'.$id;
 	}
 	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 2', 'conditional-logic-for-elementor-forms'  );
+		$id = $this->id_class();
+		$text = 'Email Conditional Logic '.$id.' (Pro version)';
+		return  apply_filters("yeeaddons_condition_email_label",$text,$id);
 	}
 	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_2';
+		return $control_id . '_conditional_logic_'.$this->id_class();
+	}
+	protected function id_class(){
+		return 2;
+	}
+	public function register_settings_section( $widget ) {
+		if(!class_exists('Yeeaddons_Upgrade_EL_Condition_Upload_Plugin')){
+			$widget->start_controls_section(
+				$this->get_control_id('email_logic_section_sendy'),
+				[
+					'label' => $this->get_label(),
+					'condition' => [
+						'submit_actions' => $this->get_name(),
+					],
+				]
+			);
+			$widget->add_control(
+				$this->get_control_id('cemail_logic_pro'),
+				[
+					'label' => esc_html__( 'Pro version', 'pdf-for-elementor-forms' ),
+					'type' => Controls_Manager::RAW_HTML,
+					'content_classes' => 'pro_disable elementor-panel-alert elementor-panel-alert-info',
+					'raw' => esc_html__( 'Upgrade to pro version', 'pdf-for-elementor-forms' ),
+				]
+			);
+			$widget->end_controls_section();
+		}else{
+			parent::register_settings_section($widget);
+		}
 	}
 }
 class Superaddons_Email_Conditional_Logic_3 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_3';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 3', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_3';
+	protected function id_class(){
+		return 3;
 	}
 }
 class Superaddons_Email_Conditional_Logic_4 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_4';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 4', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_4';
+	protected function id_class(){
+		return 4;
 	}
 }
 class Superaddons_Email_Conditional_Logic_5 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_5';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 5', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_5';
+	protected function id_class(){
+		return 5;
 	}
 }
 class Superaddons_Email_Conditional_Logic_6 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_6';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 6', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_6';
+	protected function id_class(){
+		return 6;
 	}
 }
 class Superaddons_Email_Conditional_Logic_7 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_7';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 7', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_7';
+	protected function id_class(){
+		return 7;
 	}
 }
 class Superaddons_Email_Conditional_Logic_8 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_8';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 8', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_8';
+	protected function id_class(){
+		return 8;
 	}
 }
 class Superaddons_Email_Conditional_Logic_9 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_9';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 9', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_9';
+	protected function id_class(){
+		return 9;
 	}
 }
 class Superaddons_Email_Conditional_Logic_10 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_10';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 10', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_10';
+	protected function id_class(){
+		return 10;
 	}
 }
 class Superaddons_Email_Conditional_Logic_11 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_11';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 11', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_11';
+	protected function id_class(){
+		return 11;
 	}
 }
 class Superaddons_Email_Conditional_Logic_12 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_12';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 12', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_12';
+	protected function id_class(){
+		return 12;
 	}
 }
 class Superaddons_Email_Conditional_Logic_13 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_13';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 13', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_13';
+	protected function id_class(){
+		return 13;
 	}
 }
 class Superaddons_Email_Conditional_Logic_14 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_14';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 14', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_14';
+	protected function id_class(){
+		return 14;
 	}
 }
 class Superaddons_Email_Conditional_Logic_15 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_15';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 15', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_15';
+	protected function id_class(){
+		return 15;
 	}
 }
 class Superaddons_Email_Conditional_Logic_16 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_16';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 16', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_16';
+	protected function id_class(){
+		return 16;
 	}
 }
 class Superaddons_Email_Conditional_Logic_17 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_17';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 17', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_17';
+	protected function id_class(){
+		return 17;
 	}
 }
 class Superaddons_Email_Conditional_Logic_18 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_18';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 18', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_18';
+	protected function id_class(){
+		return 18;
 	}
 }
 class Superaddons_Email_Conditional_Logic_19 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_19';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 19', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_19';
+	protected function id_class(){
+		return 19;
 	}
 }
 class Superaddons_Email_Conditional_Logic_20 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_20';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 20', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_20';
+	protected function id_class(){
+		return 20;
 	}
 }
 class Superaddons_Email_Conditional_Logic_21 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_21';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 21', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_21';
+	protected function id_class(){
+		return 21;
 	}
 }
 class Superaddons_Email_Conditional_Logic_22 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_22';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 22', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_22';
+	protected function id_class(){
+		return 22;
 	}
 }
 class Superaddons_Email_Conditional_Logic_23 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_23';
-	}
-	public function get_label() {
-		$check = get_option( '_redmuber_item_1473');
-		return esc_html__( 'Email Conditional Logic 23', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_23';
+	protected function id_class(){
+		return 23;
 	}
 }
 class Superaddons_Email_Conditional_Logic_24 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_24';
-	}
-	public function get_label() {
-		$check = get_option( '_redmuber_item_1473');
-		return esc_html__( 'Email Conditional Logic 24', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_24';
+	protected function id_class(){
+		return 24;
 	}
 }
 class Superaddons_Email_Conditional_Logic_25 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_25';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 25', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_25';
+	protected function id_class(){
+		return 25;
 	}
 }
 class Superaddons_Email_Conditional_Logic_26 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_26';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 26', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_26';
+	protected function id_class(){
+		return 26;
 	}
 }
 class Superaddons_Email_Conditional_Logic_27 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_27';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 27', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_27';
+	protected function id_class(){
+		return 27;
 	}
 }
 class Superaddons_Email_Conditional_Logic_28 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_28';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 28', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_28';
+	protected function id_class(){
+		return 28;
 	}
 }
 class Superaddons_Email_Conditional_Logic_29 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_29';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 29', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_29';
+	protected function id_class(){
+		return 29;
 	}
 }
 class Superaddons_Email_Conditional_Logic_30 extends Superaddons_Email_Conditional_Logic_2 {
-	public function get_name() {
-		return 'email_conditional_logic_30';
-	}
-	public function get_label() {
-		return esc_html__( 'Email Conditional Logic 30', 'conditional-logic-for-elementor-forms'  );
-	}
-	protected function get_control_id( $control_id ) {
-		return $control_id . '_conditional_logic_30';
+	protected function id_class(){
+		return 30;
 	}
 }

@@ -25,7 +25,7 @@ class Superaddons_Elemntor_HTML1_Field extends \ElementorPro\Modules\Forms\Field
 		<?php
 	}
 	public function get_name() {
-		return esc_html__( 'HTML', 'conditional-logic-for-elementor-forms' );
+		return esc_html__( 'HTML', 'elementor-telephone' );
 	}
 	/**
 	 * @param      $item
@@ -41,7 +41,7 @@ class Superaddons_Elemntor_HTML1_Field extends \ElementorPro\Modules\Forms\Field
 		$field_controls = [
 			'field_html1' => [
 				'name' => 'field_html1',
-				'label' => esc_html__( 'HTML', 'conditional-logic-for-elementor-forms'  ),
+				'label' => esc_html__( 'HTML', 'elementor-pro' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'condition' => [
 					'field_type' => $this->get_type(),
@@ -69,7 +69,7 @@ class Superaddons_Elemntor_HTML1_Field extends \ElementorPro\Modules\Forms\Field
 		}
 		?>
 		<div class="elementor-field-html-type" id="form-field-<?php echo esc_html($id) ?>">
-			<?php echo wp_kses_post($item['field_html1']); ?>
+			<?php echo $item['field_html1']; ?>
 		</div>
 		<?php
 	}
