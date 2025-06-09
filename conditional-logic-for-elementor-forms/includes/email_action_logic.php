@@ -38,7 +38,7 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
                         "12" => esc_html__("Not List array contain (a,b,c)","conditional-logic-for-elementor-forms"),
                     ); 
 	     $options_logic = apply_filters("yeeaddons_condition_options_logic",$options_logic);           
-	     $options_pro = apply_filters("yeeaddons_condition_options_logic_pro",$options_pro);           
+	     $options_pro = apply_filters("yeeaddons_condition_options_logic_pro",$options_pro); 
 		$widget->start_controls_section(
 			$this->get_control_id( 'section_email' ),
 			[
@@ -237,7 +237,7 @@ class Superaddons_Email_Conditional_Logic extends Email2 {
                     ],
                     [
                         'name' => 'conditional_logic_operator',
-                        'label' => esc_html__( 'Operator', "conditional-logic-for-elementor-forms" ),
+                        'label' => esc_html__( 'Operator 1', "conditional-logic-for-elementor-forms" ),
                         'type' => Controls_Manager::SELECT,
                         'label_block' => true,
                         'options' => $options_logic,
