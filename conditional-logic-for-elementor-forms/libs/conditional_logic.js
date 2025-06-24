@@ -85,6 +85,9 @@
 		}
 	function elementor_conditional_logic_load(form){
 		var datas = $(".conditional_logic_data_js",form).val();
+		if(datas === undefined || datas == "" || datas == "[]"){
+			return;
+		}
 		datas = jQuery.parseJSON(datas);
 		$.each( datas, function( field_key, field_value ) {
 			var field = elementor_conditional_logic_get_element_by_id(field_key,form);

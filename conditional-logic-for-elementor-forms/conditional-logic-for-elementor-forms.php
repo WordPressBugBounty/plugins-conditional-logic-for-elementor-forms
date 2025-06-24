@@ -4,7 +4,7 @@
  * Plugin URI: https://add-ons.org/plugin/elementor-forms-conditional-logic/
  * Requires Plugins: elementor
  * Description: The Conditional Logic add-on can be used to show and hide form fields based off of the user’s inputs.
- * Version: 2.3.2
+ * Version: 2.3.3
  * Author: add-ons.org
  * Elementor tested up to: 3.29
  * Elementor Pro tested up to: 3.29

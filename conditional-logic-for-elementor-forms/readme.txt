@@ -3,7 +3,7 @@ Contributors: addonsorg
 Tags: Elementor Forms, Conditional Logic, Conditional Logic form, Conditional Logic wp, Conditional
 Requires at least: 2.0
 Tested up to: 6.8
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 Requires PHP: 5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -15,6 +15,10 @@ Show and hide fields. Send certain email, don't send others. Redirect to one of 
 [youtube https://www.youtube.com/watch?v=b0r1ZAWx9Zw]
 
 Build dynamic forms that can change as a user fills out the form. Show and hide fields. Send certain email, don't send others. Redirect to one of many pages. The possibilities are endless!
+
+**DEMO**: <https://demo.add-ons.org/demo-conditional-logic/>
+**Document**: <https://add-ons.org/document-elementor-forms-conditional-logic/>
+**Download Pro Version**: <https://add-ons.org/plugin/elementor-forms-conditional-logic/>
 
 == Features ==
 - **Easy use**
@@ -28,14 +32,6 @@ Build dynamic forms that can change as a user fills out the form. Show and hide 
 - **Cross-browser support. Chrome, Firefox, Opera, IE8+**
 - **And more…**
 
-== Upgrade to pro version ==
-- **Additional operators ( greater than, less than, .. )**
-- **Conditional logic complex forms.**
-- **Redirect Suports**
-
-== DEMO ==
-
-<https://demo.add-ons.org/demo-conditional-logic/>
 
 == Conditional Form Notification Emails ==
 [youtube https://www.youtube.com/watch?v=MFPA2jDfTPw]
@@ -45,14 +41,15 @@ Want to send out different notification emails depending on users’ selections 
 [youtube https://www.youtube.com/watch?v=5m3cJMROiGY]
 Want to show website visitors different content based on their form submission? This guide will show you how to set up WordPress conditional redirect on form submit.
 
+== Upgrade to pro version ==
+- **Additional operators ( greater than, less than, .. )**
+- **onditional Form Notification Emails**
+- **Conditional Redirect Suports > 3**
 
-== DOCUMENT ==
+== Conditional Fields for Elementor Form – Display Conditions ==
+Elementor conditional fields, Elementor form display conditions, Elementor show hide fields, Elementor conditional logic, Elementor dynamic fields, Elementor form visibility, Elementor form conditions, Elementor conditional form, Elementor hide field on condition, Elementor field rules, Elementor logic form, Elementor smart form, Elementor conditional input, Elementor advanced form logic, Elementor form field toggle
 
-<https://add-ons.org/document-elementor-forms-conditional-logic/>
 
-== Pro Version ==
-
-<https://add-ons.org/plugin/elementor-forms-conditional-logic/>
 
 == Installation ==
 **Normal installation**
@@ -72,6 +69,9 @@ Document include in plugin
 
 
 == Changelog ==
+= 2.3.3 =
+- Fixed: Show errors when forms are not used.
+
 = 2.3.2 =
 - Fixed: Compatible with Ultimate Addons for Elementor Forms
 
