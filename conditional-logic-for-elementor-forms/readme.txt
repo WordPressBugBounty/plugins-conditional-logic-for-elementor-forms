@@ -3,7 +3,7 @@ Contributors: addonsorg
 Tags: Elementor Forms, Conditional Logic, Conditional Logic form, Conditional Logic wp, Conditional
 Requires at least: 2.0
 Tested up to: 6.8
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 Requires PHP: 5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -69,6 +69,10 @@ Document include in plugin
 
 
 == Changelog ==
+= 2.3.4 =
+- Added: Compatible with Marks field
+- Fixed: ACCEPTANCE Field
+
 = 2.3.3 =
 - Fixed: Show errors when forms are not used.
 

@@ -15,7 +15,7 @@
 		} );
 		$("body").on("change",".elementor-form input,.elementor-form select,.elementor-form textarea",function(e){
 			var form = $(this).closest(".elementor-element");
-			elementor_conditional_logic_load(form);
+			elementor_conditional_logic_load(form,event);
 		})
 		$("input").on("done_load_repeater",function(e,item){
 			$( ".elementor-form" ).each(function( index ) {
@@ -83,7 +83,7 @@
 				}
 				return rs;
 		}
-	function elementor_conditional_logic_load(form){
+	function elementor_conditional_logic_load(form,event = ""){
 		var datas = $(".conditional_logic_data_js",form).val();
 		if(datas === undefined || datas == "" || datas == "[]"){
 			return;
@@ -109,7 +109,7 @@
 				if( display == "show" ) {
 					if( check_rs == true ){
 						field.removeClass("hidden");
-						elementor_conditional_logic_fixed_required_show(field);
+						elementor_conditional_logic_fixed_required_show(field,event);
 					}else{
 						field.addClass("hidden");
 						field.find('input').removeAttr('required');
@@ -122,7 +122,7 @@
 						elementor_conditional_logic_fixed_required_hidden(field);
 					}else{
 						field.removeClass("hidden");
-						elementor_conditional_logic_fixed_required_show(field);
+						elementor_conditional_logic_fixed_required_show(field,event);
 					}
 				}
 			}else{
@@ -136,7 +136,7 @@
 				if( display == "show" ) {
 					if( check_rs == true ){
 						field.removeClass("hidden");
-						elementor_conditional_logic_fixed_required_show(field);
+						elementor_conditional_logic_fixed_required_show(field,event);
 					}else{
 						field.addClass("hidden");
 						field.find('input').removeAttr('required');
@@ -148,24 +148,24 @@
 						elementor_conditional_logic_fixed_required_hidden(field);
 					}else{
 						field.removeClass("hidden");
-						elementor_conditional_logic_fixed_required_show(field);
+						elementor_conditional_logic_fixed_required_show(fiel,eventd);
 					}
 				}	
 			}
 		});
 	}
-	function elementor_conditional_logic_fixed_required_show(field){
+	function elementor_conditional_logic_fixed_required_show(field,event){
 		if(field.find(".elementor-field-repeater-data").length > 0 ){
 			var fields_repeater = field.find(".elementor-field-required");
 			fields_repeater.each(function( index ) {
-				elementor_conditional_logic_fixed_required_show_repeater($(this))
+				elementor_conditional_logic_fixed_required_show_repeater($(this),event)
 			});
 			return;
 		}else{
-			elementor_conditional_logic_fixed_required_show_repeater(field)
+			elementor_conditional_logic_fixed_required_show_repeater(field,event)
 		}
 	}
-	function elementor_conditional_logic_fixed_required_show_repeater(field){
+	function elementor_conditional_logic_fixed_required_show_repeater(field,event){
 		if( field.hasClass("elementor-field-type-radio") ){
 			var value = field.data("check_required");
 			if(value == "yes"){
@@ -224,11 +224,30 @@
 			}
 		}
 		else if( field.hasClass("elementor-field-type-textarea") ){
-			var value = field.find("textarea").val();
+			var value = field.find(".elementor-field").val();
 			if(value == "rednumber_dev_check"){
-				field.find("textarea").val("");
+				field.find(".elementor-field").val("");
 			}
-		}else{
+		}else if( field.hasClass("elementor-field-type-yee_input_masks") ){
+			var value = field.find(".elementor-field").val();
+			if(value == "rednumber_dev_check"){
+				field.find(".elementor-field").val("");
+				field.find(".elementor-field").inputmask();
+			}
+		}
+		else if( field.hasClass("elementor-field-type-acceptance") ){
+			var last = field.find("input").data("logic-last");
+			if (!$(event.target).hasClass("elementor-acceptance-field")) {
+				field.find("input").prop("checked", last);
+			}else{
+				if(field.find("input").is(':checked')) {
+					field.find("input").data("logic-last",true);
+				}else{
+					field.find("input").data("logic-last",false);
+				}
+			}
+		}
+		else{
 			var value = field.find("input").val();
 			if(value == "rednumber_dev_check"){
 				field.find("input").val("");
@@ -333,13 +352,23 @@
 			}
 		}else if( field.hasClass("elementor-field-type-acceptance") ){
 			if(field.find("input").is(':checked')) {
+				field.find("input").attr("data-logic-last",true);
 			}else{
 				field.find("input").removeAttr("aria-required");
-				field.find("input").attr("data-logic-last",true);
+				field.find("input").attr("data-logic-last",false);
 				field.find("input").prop("checked", true);
+			}
+		}else if( field.hasClass("elementor-field-type-yee_input_masks") ){
+			var value = field.find("input").val();
+			field.find("input").removeAttr("aria-required");
+			if(value == ""){
+				field.find("input.elementor-field").inputmask("remove");
+				field.find("input.elementor-field").val("rednumber_dev_check");
+				field.find("input.yeeaddons_input_maks_check").val("yes")
 			}
 		}
 		else{
+			
 			var value = field.find("input").val();
 			field.find("input").removeAttr("aria-required");
 			if(value == ""){
