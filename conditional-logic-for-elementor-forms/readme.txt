@@ -3,7 +3,7 @@ Contributors: addonsorg
 Tags: Elementor Forms, Conditional Logic, Conditional Logic form, Conditional Logic wp, Conditional
 Requires at least: 2.0
 Tested up to: 6.8
-Stable tag: 2.3.4
+Stable tag: 2.3.5
 Requires PHP: 5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,6 +25,7 @@ Build dynamic forms that can change as a user fills out the form. Show and hide 
 - **Conditional Form Notification Emails:** Sending emails to different addresses according to user answers
 - **Conditional Redirect on Form Submit:** Showing additional questions when a user chooses a specific answer
 - **All fields support:** Works with all fields
+- **Submit Button support:** The submit button can be shown or hidden
 - **Multiple Conditions:** Define more than one condition for advanced control.
 - **No Validation Errors:** Submit the form seamlessly even when required fields are hidden.
 - **Smart Field Control:** Make your forms smart! Display or hide fields, sections, or entire questions based on user responses.

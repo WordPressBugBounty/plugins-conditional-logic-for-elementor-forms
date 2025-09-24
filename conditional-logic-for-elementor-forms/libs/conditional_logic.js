@@ -90,7 +90,12 @@
 		}
 		datas = jQuery.parseJSON(datas);
 		$.each( datas, function( field_key, field_value ) {
-			var field = elementor_conditional_logic_get_element_by_id(field_key,form);
+			if(field_key == "elementor-field-type-submit"){
+				var field = $(".elementor-field-type-submit",form);
+			}else{
+				var field = elementor_conditional_logic_get_element_by_id(field_key,form);
+			}
+			
 			var display = field_value.display;
 			var trigger = field_value.trigger;
 			var rs = [];
