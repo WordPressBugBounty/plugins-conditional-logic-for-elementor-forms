@@ -1,9 +1,9 @@
-=== Yeekit - Conditional Logic for Elementor Forms ===
+=== Conditional Logic Emails, Fields, Redirect for Elementor Forms ===
 Contributors: addonsorg
 Tags: Elementor Forms, Conditional Logic, Conditional Logic form, Conditional Logic wp, Conditional
 Requires at least: 2.0
-Tested up to: 6.8
-Stable tag: 2.3.5
+Tested up to: 6.9
+Stable tag: 2.3.9
 Requires PHP: 5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -24,6 +24,7 @@ Build dynamic forms that can change as a user fills out the form. Show and hide 
 - **Easy use**
 - **Conditional Form Notification Emails:** Sending emails to different addresses according to user answers
 - **Conditional Redirect on Form Submit:** Showing additional questions when a user chooses a specific answer
+- **Conditional Webhook on Form Submit:**  Send data to specific webhook URLs only when certain conditions are met.
 - **All fields support:** Works with all fields
 - **Submit Button support:** The submit button can be shown or hidden
 - **Multiple Conditions:** Define more than one condition for advanced control.
@@ -34,7 +35,7 @@ Build dynamic forms that can change as a user fills out the form. Show and hide 
 - **And more…**
 
 
-== Conditional Form Notification Emails ==
+== Conditional Form Notification Emails - Conditional Email Routing ==
 [youtube https://www.youtube.com/watch?v=MFPA2jDfTPw]
 Want to send out different notification emails depending on users’ selections in your forms? With our smart conditional logic, you can set up your form to send unique email notifications based on users’ input.
 
@@ -42,10 +43,18 @@ Want to send out different notification emails depending on users’ selections 
 [youtube https://www.youtube.com/watch?v=5m3cJMROiGY]
 Want to show website visitors different content based on their form submission? This guide will show you how to set up WordPress conditional redirect on form submit.
 
+== Webhook Condition Logic ==
+- Smart Conditional Webhooks – Send data to specific webhook URLs only when certain conditions are met.
+- Dynamic Automation – Easily automate integrations with external systems (like Zapier, Make, or custom APIs) based on user input or form logic.
+- Granular Control – Define “If/Then” rules per form field (for example: If user selects ‘VIP’, send data to CRM webhook).
+- No Code Required – Configure conditional rules directly inside Elementor Forms without writing any PHP.
+- Supports Multiple Webhooks – Trigger different endpoints simultaneously, depending on user selections or calculated values.
+
 == Upgrade to pro version ==
 - **Additional operators ( greater than, less than, .. )**
-- **onditional Form Notification Emails**
-- **Conditional Redirect Suports > 3**
+- **onditional Form Notification Emails > 5**
+- **Conditional Redirect Suports > 5**
+- **Conditional Webhook Suports > 1**
 
 == Conditional Fields for Elementor Form – Display Conditions ==
 Elementor conditional fields, Elementor form display conditions, Elementor show hide fields, Elementor conditional logic, Elementor dynamic fields, Elementor form visibility, Elementor form conditions, Elementor conditional form, Elementor hide field on condition, Elementor field rules, Elementor logic form, Elementor smart form, Elementor conditional input, Elementor advanced form logic, Elementor form field toggle
@@ -70,6 +79,13 @@ Document include in plugin
 
 
 == Changelog ==
+= 2.3.8 =
+- Added: Redirect in a new tab
+
+= 2.3.6 =
+- Added: The free version is now being used more.
+- Added: Webhook condition logic
+
 = 2.3.4 =
 - Added: Compatible with Marks field
 - Fixed: ACCEPTANCE Field

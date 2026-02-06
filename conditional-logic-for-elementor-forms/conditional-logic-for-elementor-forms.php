@@ -1,14 +1,16 @@
 <?php
 /**
- * Plugin Name: Conditional Logic for Elementor Forms
+ * Plugin Name: Conditional Logic Emails, Fields, Redirect for Elementor Forms
  * Plugin URI: https://add-ons.org/plugin/elementor-forms-conditional-logic/
  * Requires Plugins: elementor
  * Description: The Conditional Logic add-on can be used to show and hide form fields based off of the user’s inputs.
- * Version: 2.3.5
+ * Version: 2.3.9
  * Author: add-ons.org
- * Elementor tested up to: 3.32
- * Elementor Pro tested up to: 3.32
+ * Elementor tested up to: 3.35
+ * Elementor Pro tested up to: 3.35
  * Author URI: https://add-ons.org/
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -25,6 +27,7 @@ if (!defined('ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH')) {
 		function superaddons_register_new_form_actions($form_actions_registrar){
 			include ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH .'includes/email_action_logic.php';
 			include ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH .'includes/redirect_action_logic.php';
+			include ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH .'includes/webhook.php';
 		    $form_actions_registrar->register( new \Superaddons_Email_Conditional_Logic() );
 		    $form_actions_registrar->register( new \Superaddons_Email_Conditional_Logic_2() );
 		    $form_actions_registrar->register( new \Superaddons_Email_Conditional_Logic_3() );
@@ -85,6 +88,11 @@ if (!defined('ELEMENTOR_CONDITIONAL_LOGIC_PLUGIN_PATH')) {
 		    $form_actions_registrar->register( new \Superaddons_Redirect_Conditional_Logic_28() );
 		    $form_actions_registrar->register( new \Superaddons_Redirect_Conditional_Logic_29() );
 		    $form_actions_registrar->register( new \Superaddons_Redirect_Conditional_Logic_30() );
+		    $form_actions_registrar->register( new \Yeekit_EL_Webhook_Conditional_Logic() );
+		    $form_actions_registrar->register( new \Yeekit_EL_Webhook_Conditional_Logic_2() );
+		    $form_actions_registrar->register( new \Yeekit_EL_Webhook_Conditional_Logic_3() );
+		    $form_actions_registrar->register( new \Yeekit_EL_Webhook_Conditional_Logic_4() );
+		    $form_actions_registrar->register( new \Yeekit_EL_Webhook_Conditional_Logic_5() );
 		}
 		function superaddons_remove_html_field_type($fields){
 			unset( $fields['html'] );
